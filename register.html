@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro - Mochileros Sin Fronteras</title>
+<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo-title">Mochileros Sin Fronteras</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#">Experiencias</a></li>
+                <li><a href="#">Consejos</a></li>
+                <li><a href="#">Foro</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <img src="images/logo.png" alt="Logo de Mochileros Sin Fronteras" class="logo-img">
+            <select name="language" id="language-select">
+                <option value="es">ES</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="register-main-container">
+        <form class="registration-form">
+            <h2>Registro de nuevos usuarios</h2>
+            <div class="form-row">
+                <input type="text" name="name" placeholder="Nombre" required>
+                <input type="text" name="surname" placeholder="Apellidos">
+            </div>
+            <div class="form-row">
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <input type="email" name="confirm-email" placeholder="Confirmar correo" required>
+            </div>
+            <label for="birthdate">Fecha de nacimiento</label>
+            <input type="date" name="birthdate" id="birthdate" required>
+            <div class="form-row">
+                <input type="text" name="login" placeholder="Login" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <label for="profile-pic">Subir imagen de perfil</label>
+            <input type="file" name="profile-pic" id="profile-pic">
+            <div class="accept-terms">
+                <input type="checkbox" name="accept-terms" id="accept-terms" required>
+                <label for="accept-terms">Acepto la <a href="#">Política de Privacidad</a></label>
+            </div>
+            <a href="loggedin.html" class="btn">Guardar datos y acceder</a>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2025 Mochileros sin Fronteras</p>
+        <div class="footer-links">
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Ayuda</a>
+        </div>
+        <div class="social-media">
+            <a href="#"><img src="images/X.png" alt="Logo de X"></a>
+            <a href="#"><img src="images/instagram.png" alt="Logo de Instagram"></a>
+            <a href="#"><img src="images/tiktok.png" alt="Logo de Tiktok"></a>
+        </div>
+        <form class="newsletter">
+            <input type="email" placeholder="Suscríbete a la newsletter">
+            <button type="submit" class="btn-small">Enviar</button>
+        </form>
+    </div>
+</footer>
+</body>

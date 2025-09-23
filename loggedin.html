@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio - Mochileros Sin Fronteras</title>
+<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo-title">Mochileros Sin Fronteras</div>
+        <nav>
+            <ul>
+                <li><a href="loggedin.html">Inicio</a></li>
+                <li><a href="#">Experiencias</a></li>
+                <li><a href="#">Consejos</a></li>
+                <li><a href="#">Foro</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <img src="images/logo.png" alt="Logo de Mochileros Sin Fronteras" class="logo-img">
+            <select name="language" id="language-select">
+                <option value="es">ES</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="main-container">
+        <section class="main-content">
+            <div class="top-block">
+                <div class="banner">
+                    <h1>Comparte y descubre viajes mochileros de larga distancia</h1>
+                </div>
+                <h2>Packs de viaje recomendados</h2>
+                <div class="packs-container">
+                    <span class="arrow left-arrow">&lt;</span>
+                    <div class="travel-pack">
+                        <img src="images/imagen_montañas.jpg">
+                        <div class="pack-info">
+                            <h3>Pack Sudeste Asiático</h3>
+                            <p>Vietnam & Camboya: buses, hostales y guía de visados.</p>
+                        </div>
+                        <div class="pack-purchase">
+                            <span class="price">€600</span>
+                            <a href="purchase.html" class="btn">Comprar</a>
+                        </div>
+                    </div>
+                    <span class="arrow right-arrow">&gt;</span>
+                </div>
+            </div>
+
+            <div class="bottom-block">
+                <h2>Experiencias de la comunidad mochilera</h2>
+                <div class="experiences-container">
+                    <div class="experience-card">
+                        <img src="images/katmandu.jpg" alt="Hostal en Katmandú">
+                        <h3>Hostal en Katmandú</h3>
+                        <div class="card-actions">
+                            <a href="register.html" class="btn-small">Ver más</a>
+                            <a href="register.html" class="like-icon">♡</a>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <img src="images/sudamerica-bus.jpg" alt="Autobús en Sudamérica">
+                        <h3>Sudamérica en bus</h3>
+                        <div class="card-actions">
+                            <a href="register.html" class="btn-small">Ver más</a>
+                            <a href="register.html" class="like-icon">♡</a>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <img src="images/visado-india.jpg" alt="Tempo en India">
+                        <h3>Visado para India</h3>
+                        <div class="card-actions">
+                            <a href="register.html" class="btn-small">Ver más</a>
+                            <a href="register.html" class="like-icon">♡</a>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <img src="images/vietnam-moto.jpg" alt="Ruta en moto por Vietnam">
+                        <h3>Vietnam: ruta en moto</h3>
+                        <div class="card-actions">
+                            <a href="register.html" class="btn-small">Ver más</a>
+                            <a href="register.html" class="like-icon">♡</a>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <img src="images/trekking-peru.jpg" alt="Trekking en Perú">
+                        <h3>Trekking en Perú</h3>
+                        <div class="card-actions">
+                            <a href="register.html" class="btn-small">Ver más</a>
+                            <a href="register.html" class="like-icon">♡</a>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <img src="images/safari-tanzania.jpg" alt="Safari en Tanzania">
+                        <h3>Safari en Tanzania</h3>
+                        <div class="card-actions">
+                            <a href="register.html" class="btn-small">Ver más</a>
+                            <a href="register.html" class="like-icon">♡</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <aside class="sidebar">
+            <div class="sidebar-container user-info">
+                <p class="username">Nombre de usuario</p>
+                <img src="images/profile-pic.jpg" alt="Imagen de perfil del usuario" class="profile-pic">
+                <a href="index.html" class="btn-small">Cerrar sesión</a>
+            </div>
+            <div class="sidebar-container">
+                <h3>Busca experiencias</h3>
+                <form class="experience-filter">
+                    <div>
+                        <input type="checkbox" id="america" name="continent" value="america">
+                        <label for="america">América</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="europe" name="continent" value="europe">
+                        <label for="europe">Europa</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="asia" name="continent" value="asia">
+                        <label for="asia">Asia</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="africa" name="continent" value="africa">
+                        <label for="africa">África</label>
+                    </div>
+                    <div class="search-bar">
+                        <input type="search" placeholder="search">
+                        <button type="submit">&#128269;</button>
+                    </div>
+                </form>
+            </div>
+            <div class="sidebar-container tips">
+                <h3>Últimos consejos</h3>
+                <ul>
+                    <li><a href="#">Cómo ahorrar dinero en hostales</a></li>
+                    <li><a href="#">Mejores apps para planear viajes</a></li>
+                    <li><a href="#">Visados fáciles en Asia</a></li>
+                </ul>
+                <form class="tip-form">
+                    <h3>¿Tienes algún consejo?</h3>
+                    <input type="text" placeholder="Título del consejo" required>
+                    <textarea placeholder="Escribe aquí tu consejo..." required></textarea>
+                    <button type="submit" class="btn-small">Enviar</button>
+                </form>
+            </div>
+            <div class="sidebar-container calendar">
+                <img src="images/calendario.png" alt="Calendario">
+            </div>
+        </aside>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2025 Mochileros sin Fronteras</p>
+        <div class="footer-links">
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Ayuda</a>
+        </div>
+        <div class="social-media">
+            <a href="#"><img src="images/X.png" alt="Logo de X"></a>
+            <a href="#"><img src="images/instagram.png" alt="Logo de Instagram"></a>
+            <a href="#"><img src="images/tiktok.png" alt="Logo de Tiktok"></a>
+        </div>
+        <form class="newsletter">
+            <input type="email" placeholder="Suscríbete a la newsletter">
+            <button type="submit" class="btn-small">Enviar</button>
+        </form>
+    </div>
+</footer>
+</body>

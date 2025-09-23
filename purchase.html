@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compra - Mochileros Sin Fronteras</title>
+<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo-title">Mochileros Sin Fronteras</div>
+        <nav>
+            <ul>
+                <li><a href="loggedin.html">Inicio</a></li>
+                <li><a href="#">Experiencias</a></li>
+                <li><a href="#">Consejos</a></li>
+                <li><a href="#">Foro</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <img src="images/logo.png" alt="Logo de Mochileros Sin Fronteras" class="logo-img">
+            <select name="language" id="language-select">
+                <option value="es">ES</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="purchase-main-container">
+        <section class="pack-info">
+            <div class="pack-card">
+                <img src="images/sudeste-asiatico.jpg" alt="Paisaje del Sudeste Asiático">
+                <div class="pack-details">
+                    <h3>Pack Sudeste Asiático</h3>
+                    <span class="price">€600</span>
+                </div>
+                <p class="short-description">Vietnam & Camboya: buses, hostales y guía de visados</p>
+            </div>
+            <div class="full-description">
+                <h4>Descripción del pack</h4>
+                <p>Embárcate en una aventura inolvidable por el corazón del Sudeste Asiático. Este pack está diseñado para mochileros que buscan explorar la cultura vibrante de Vietnam y la historia ancestral de Camboya de una manera auténtica y económica. Incluye una guía completa de rutas de autobús, recomendaciones de los mejores hostales y toda la información necesaria para gestionar tus visados sin complicaciones.</p>
+            </div>
+        </section>
+
+        <section class="purschase-form">
+            <form>
+                <h2>Formulario de compra</h2>
+                <input type="text" name="fullname" placeholder="Nombre completo" required>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <label for="card-type"></label>
+                <select id="card-type" name="card-type" selected="visa" required>
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">Mastercard</option>
+                    <option value="santander">Santander</option>
+                </select>
+                <input type="text" name="card-number" placeholder="Número de tarjeta">
+                <input type="text" name="cardholder-name" placeholder="Nombre del titular de la tarjeta">
+                <label for="expiry-date">Fecha de caducidad</label>
+                <div class="form-row">
+                    <input type="month" id="expiry-date" name="expiry-date">
+                    <input type="text" id="cvv" name="cvv" placeholder="Código CVV" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn">Comprar</button>
+                    <button type="reset" class="btn">Borrar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2025 Mochileros sin Fronteras</p>
+        <div class="footer-links">
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Ayuda</a>
+        </div>
+        <div class="social-media">
+            <a href="#"><img src="images/X.png" alt="Logo de X"></a>
+            <a href="#"><img src="images/instagram.png" alt="Logo de Instagram"></a>
+            <a href="#"><img src="images/tiktok.png" alt="Logo de Tiktok"></a>
+        </div>
+        <form class="newsletter">
+            <input type="email" placeholder="Suscríbete a la newsletter">
+            <button type="submit" class="btn-small">Enviar</button>
+        </form>
+    </div>
+</footer>
+</body>
+</html>

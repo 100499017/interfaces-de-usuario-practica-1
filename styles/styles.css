@@ -1,0 +1,269 @@
+/* Definición de paleta de colores de la página */
+:root {
+    --primary-color: #2c5e3f;
+    --secondary-color: #f4a261;
+    --background-color: #fdfaf6;
+    --border-color: #ddd;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+header {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-right img {
+    height: 60px;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content {
+    flex: 2; /* Ocupa 2/3 del ancho de la pagina */
+}
+
+.sidebar {
+    flex: 1; /* Ocupa 1/3 del ancho de la pagina */
+}
+
+/* Main Page */
+.banner {
+    background-image: url(images/imagen_montañas.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.banner h1 {
+    background-color: rgba(0,0,0,0.5);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.packs-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.arrow {
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.travel-pack {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px;
+    width: 80%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: white;
+}
+
+.travel-pack img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.pack-details {
+    flex-grow: 1;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var(--primary-color);
+}
+
+.experiences-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.experience-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.experience-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.experience-card h3 {
+    padding: 0 10px;
+    margin: 5px 0;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-container a {
+    color: white;
+}
+
+.social-media {
+    display: flex;
+    gap: 10px;
+}
+
+.social-media img {
+    height: 30px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-container {
+        flex-direction: column;
+    }
+
+    .experiences-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .purchase-main-container {
+        flex-direction: column;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .main-content {
+        order: 2;
+    }
+
+    .sidebar {
+        order: 1;
+    }
+
+    .travel-pack {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .experiences-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
