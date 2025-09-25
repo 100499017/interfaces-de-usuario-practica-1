@@ -117,7 +117,7 @@ main {
 }
 
 .banner {
-    background-image: url(images/imagen_montañas.jpg);
+    background-image: url(../images/imagen_montañas.jpg);
     background-size: cover;
     background-position: center;
     color: white;
@@ -205,7 +205,7 @@ main {
 .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
 }
 
 .login-form {
