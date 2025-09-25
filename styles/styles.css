@@ -1,4 +1,4 @@
-/* Definición de paleta de colores de la página */
+/* Definicion de paleta de colores de la página */
 :root {
     --primary-color: #2c5e3f;
     --secondary-color: #f4a261;
@@ -7,6 +7,12 @@
 }
 
 /* General */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html, body {
     height: 100%;
@@ -17,7 +23,7 @@ body {
     margin: 0;
     background-color: var(--background-color);
     display: flex;
-    flex-direction: column; /* Hace que el main rellene el espacio sobrante*/
+    flex-direction: column; /* Hace que el main rellene el espacio vertical sobrante */
 }
 
 a {
@@ -27,6 +33,18 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+}
+
+.text-input {
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 0.9em;
 }
 
 /* Header */
@@ -182,10 +200,28 @@ main {
     margin: 5px 0;
 }
 
+/* Sidebar */
+
 .sidebar {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-form input {} 
+
+.sidebar-container h3 {
+    margin-bottom: 10px;
+}
+
+.sidebar-container ul li {
+    margin-left: 20px;
 }
 
 /* Register Page */
@@ -269,6 +305,15 @@ footer {
 
     .purchase-main-container {
         flex-direction: column;
+    }
+
+    .sidebar-container h3 {
+        text-align: center;
+    }
+
+    .sidebar-container ul li {
+        margin-left: 0;
+        text-align: center;
     }
 
     .footer-container {
