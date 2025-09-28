@@ -40,7 +40,7 @@
                 <div class="packs-container">
                     <span class="arrow left-arrow">&lt;</span>
                     <div class="travel-pack">
-                        <img src="images/imagen_montañas.jpg">
+                        <img src="images/sudeste_asiatico.webp" alt="Paisaje del Sudeste Asiático">
                         <div class="pack-info">
                             <h3>Pack Sudeste Asiático</h3>
                             <p>Vietnam & Camboya: buses, hostales y guía de visados.</p>
@@ -110,32 +110,38 @@
         </section>
         <aside class="sidebar">
             <div class="sidebar-container user-info">
-                <p class="username">Nombre de usuario</p>
-                <img src="images/profile-pic.jpg" alt="Imagen de perfil del usuario" class="profile-pic">
-                <a href="index.html" class="btn-small">Cerrar sesión</a>
+                <div class="name-and-image">
+                    <p class="username">Nombre de usuario</p>
+                    <img src="images/profile-pic.jpg" alt="Imagen de perfil del usuario" class="profile-pic">
+                </div>
+                <a href="index.html" class="btn">Cerrar sesión</a>
             </div>
             <div class="sidebar-container">
                 <h3>Busca experiencias</h3>
                 <form class="experience-filter">
-                    <div>
-                        <input type="checkbox" id="america" name="continent" value="america">
-                        <label for="america">América</label>
+                    <div class="form-row">
+                        <div>
+                            <input type="checkbox" id="america" name="continent" value="america">
+                            <label for="america">América</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="europe" name="continent" value="europe">
+                            <label for="europe">Europa</label>
+                        </div>
                     </div>
-                    <div>
-                        <input type="checkbox" id="europe" name="continent" value="europe">
-                        <label for="europe">Europa</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="asia" name="continent" value="asia">
-                        <label for="asia">Asia</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="africa" name="continent" value="africa">
-                        <label for="africa">África</label>
+                    <div class="form-row">
+                        <div>
+                            <input type="checkbox" id="asia" name="continent" value="asia">
+                            <label for="asia">Asia</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="africa" name="continent" value="africa">
+                            <label for="africa">África</label>
+                        </div>
                     </div>
                     <div class="search-bar">
-                        <input type="search" placeholder="search">
-                        <button type="submit">&#128269;</button>
+                        <input class="text-input" type="search" placeholder="search...">
+                        <button type="submit">🔍</button>
                     </div>
                 </form>
             </div>
@@ -148,9 +154,9 @@
                 </ul>
                 <form class="tip-form">
                     <h3>¿Tienes algún consejo?</h3>
-                    <input type="text" placeholder="Título del consejo" required>
-                    <textarea placeholder="Escribe aquí tu consejo..." required></textarea>
-                    <button type="submit" class="btn-small">Enviar</button>
+                    <input class="text-input" type="text" placeholder="Título del consejo" required>
+                    <textarea class="text-input" placeholder="Escribe aquí tu consejo..." required></textarea>
+                    <button type="submit" class="btn">Enviar</button>
                 </form>
             </div>
             <div class="sidebar-container calendar">
