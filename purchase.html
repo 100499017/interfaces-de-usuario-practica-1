@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Compra - Mochileros Sin Fronteras</title>
-<link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="style/styles.css">
 </head>
 <body>
 <header>
@@ -35,8 +35,7 @@
             <div class="pack-card">
                 <img src="images/sudeste_asiatico.webp" alt="Paisaje del Sudeste Asiático">
                 <div class="pack-details">
-                    <h3>Pack Sudeste Asiático</h3>
-                    <span class="price">€600</span>
+                    <h3>Pack Sudeste Asiático <span class="price">€600</span></h3>
                 </div>
                 <p class="short-description">Vietnam & Camboya: buses, hostales y guía de visados</p>
             </div>
@@ -46,20 +45,30 @@
             </div>
         </section>
 
-        <section class="purschase-form">
+        <section class="purchase-form">
             <form>
                 <h2>Formulario de compra</h2>
-                <input type="text" name="fullname" placeholder="Nombre completo" required>
-                <input type="email" name="email" placeholder="Correo electrónico" required>
-                <label for="card-type"></label>
-                <select id="card-type" name="card-type" required>
-                    <option value="">Visa</option>
-                    <option value="mastercard">Mastercard</option>
-                    <option value="santander">Santander</option>
-                </select>
-                <input type="text" name="card-number" placeholder="Número de tarjeta">
-                <input type="text" name="cardholder-name" placeholder="Nombre del titular de la tarjeta">
-                <label for="expiry-date">Fecha de caducidad</label>
+                <div class="form-row">
+                    <input class="text-input" type="text" name="fullname" placeholder="Nombre completo" required>
+                    <input class="text-input" type="email" name="email" placeholder="Correo electrónico" required>
+                </div>
+                <div class="form-row">
+                    <label for="card-type">Tipo de tarjeta</label>
+                </div>
+                <div class="form-row">
+                    <select class="text-input" id="card-type" name="card-type" required>
+                        <option value="">Visa</option>
+                        <option value="mastercard">Mastercard</option>
+                        <option value="santander">Santander</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input class="text-input" type="text" name="card-number" placeholder="Número de tarjeta">
+                    <input class="text-input" type="text" name="cardholder-name" placeholder="Nombre del titular de la tarjeta">
+                </div>
+                <div class="form-row">
+                    <label for="expiry-date">Fecha de caducidad</label>
+                </div>
                 <div class="form-row">
                     <input type="month" id="expiry-date" name="expiry-date">
                     <input type="text" id="cvv" name="cvv" placeholder="Código CVV" required>

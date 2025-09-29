@@ -236,6 +236,10 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
 }
 
 .registration-form .form-row {
@@ -317,6 +321,65 @@ main {
 }
 
 /* Purchase Page */
+
+.purchase-main-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.purchase-main-container .pack-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.purchase-main-container .full-description {
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.purchase-main-container .full-description h4 {
+    margin-bottom: 10px;
+}
+
+.purchase-main-container .purchase-form {
+    flex: 3;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.purchase-main-container .pack-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    background-color: white;
+    text-align: center;
+}
+
+.purchase-main-container .pack-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.purchase-main-container .purchase-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
 /* Footer */
 footer {
