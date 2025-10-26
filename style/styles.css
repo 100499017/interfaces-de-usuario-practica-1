@@ -413,6 +413,10 @@ footer {
 }
 
 /* Buttons */
+button:hover {
+    cursor: pointer;
+}
+
 .btn {
     display: inline-block;
     background-color: var(--primary-color);

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inicio - Mochileros Sin Fronteras</title>
 <link rel="stylesheet" href="style/styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="script/script.js"></script>
 </head>
 <body>
 <header>
@@ -112,14 +114,14 @@
         <aside class="sidebar">
             <div class="sidebar-container">
                 <form class="login-form">
-                    <input class="text-input" type="text" name="username" placeholder="Usuario">
-                    <input class="text-input" type="password" name="password" placeholder="Contraseña">
+                    <input class="text-input" id="username" type="text" placeholder="Usuario" required>
+                    <input class="text-input" id="password" type="password" placeholder="Contraseña" required>
                     <div class="remember-credentials">
                         <input type="checkbox" id="remember" name="remember">
                         <label for="remember">Recordar credenciales</label>
                     </div>
-                    <a href="loggedin.html" class="btn">Iniciar sesión</a>
-                    <a href="register.html" class="btn">Registro</a>
+                    <button type="submit" class="btn">Iniciar sesión</button>
+                    <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
                 </form>
             </div>
             <div class="sidebar-container">
