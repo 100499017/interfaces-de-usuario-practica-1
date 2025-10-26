@@ -4,28 +4,31 @@ $(document).ready(function() {
     
     const travelPacks = [
         {
+            id: "sudeste_asiatico",
             image: "images/sudeste_asiatico.webp",
             alt: "Paisaje del Sudeste Asiático",
             title: "Pack Sudeste Asiático",
             description: "Vietnam & Camboya: buses, hostales y guía de visados.",
             price: "€600",
-            link: "purchase.html"
+            purchaseDescription: "Embárcate en una aventura de 3 semanas por el corazón del Sudeste Asiático. Este pack cubre todos los transportes en autobús entre ciudades clave de Vietnam y Camboya, alojamiento en hostales seleccionados y una guía completa para la gestión de visados."
         },
         {
+            id: "patagonia",
             image: "images/patagonia.jpg",
             alt: "Montañas en la Patagonia",
             title: "Aventura en la Patagonia",
             description: "Trekking por el sur de Argentina y Chile",
             price: "€850",
-            link: "purchase.html"
+            purchaseDescription: "Explora los paisajes más impresionantes de la Patagonia con este pack de 15 días. Incluye rutas de trekking guiadas por el Parque Nacional Torres del Paine (Chile) y El Chaltén (Argentina), con todo el equipo de acampada necesario."
         },
         {
+            id: "transiberiano",
             image: "images/transiberiano.jpg",
             alt: "Tren Transiberiano",
             title: "Ruta del Transiberiano",
             description: "El legendario viaje en tren de Moscú a Vladivostok.",
             price: "€1200",
-            link: "purchase.html"
+            purchaseDescription: "Realiza el viaje en tren más largo del mundo. Este pack de 21 días te lleva de Moscú a Vladivostok, con paradas estratégicas en Ekaterimburgo y el Lago Baikal. Incluye todos los billetes de tren en segunda clase y tours guiados en las paradas."
         }
     ];
 
@@ -45,7 +48,7 @@ $(document).ready(function() {
                 </div>
                 <div class="pack-purchase">
                     <span class="price">${pack.price}</span>
-                    <a href="${pack.link}" class="btn">Comprar</a>
+                    <a href="purchase.html" class="btn buy-btn" data-pack-id="${pack.id}">Comprar</a>
                 </div>
             `).fadeIn(400);
         });
@@ -63,9 +66,17 @@ $(document).ready(function() {
     });
 
     // Navegación automática del carrusel
-    let carouselInterval = setInterval(function() {
+    setInterval(function() {
         $(".right-arrow").click();
     }, 2000);
+
+    // Guardar pack seleccionado
+    $(document).on("click", ".buy-btn", function(event) {
+        event.preventDefault(); // Evita que el enlace navegue inmediatamente
+        const packId = $(this).data("pack-id"); // Obtenemos el id del pack mediante el atributo 'data-pack-id'
+        sessionStorage.setItem("selectedPackId", packId); // Lo guardamos en sessionStorage
+        window.location.href = $(this).attr("href"); // Navegamos hacia la página de compra
+    });
 
     // --- FUNCIONALIDAD DE LOGIN (Página Home - index.html) ---
 
@@ -136,7 +147,7 @@ $(document).ready(function() {
 
         // Login: al menos 5 caracteres
         const login = $("input[name='login']").val();
-        if (login.length < 5 || localStorage.getItem(login)) {
+        if (!(/^[a-zA-Z]{5,}$/.test(login)) || !(localStorage.getItem(login))) {
             isValid = false;
         }
 
@@ -209,4 +220,21 @@ $(document).ready(function() {
     // Estado inicial del botón
     validateForm();
 
+    // Página de compra
+    if ($(".purchase-main-container").length > 0) {
+        const selectedPackId = sessionStorage.getItem("selectedPackId");
+
+        if (selectedPackId.length) {
+            // Busca el pack usando el ID
+            const packData = travelPacks.find(pack => pack.id === selectedPackId);
+            console.log(packData.id);
+
+            // Actualiza el contenido de la página
+            $("#purchase-pack-image").attr("src", packData.image).attr("alt", packData.alt);
+            $("#purchase-pack-title").text(packData.title);
+            $("#purchase-pack-short-description").text(packData.description)
+            $("#purchase-pack-description").text(packData.purchaseDescription);
+            $("#purchase-pack-price").text(packData.price);
+        }
+    };
 })
