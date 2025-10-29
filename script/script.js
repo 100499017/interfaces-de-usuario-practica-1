@@ -337,7 +337,7 @@ function showAdviceDetails(adviceId) {
 
         // Login: al menos 5 caracteres
         const login = $("input[name='login']").val();
-        if (!(/^[a-zA-Z]{5,}$/.test(login)) || !(localStorage.getItem(login))) {
+        if (!(/^[a-zA-Z]{5,}$/.test(login)) || (localStorage.getItem(login))) {
             isValid = false;
         }
 

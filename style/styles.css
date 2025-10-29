@@ -460,7 +460,7 @@ button:hover {
     font-size: 0.9em;
 }
 
-/* Estilos para el sistema de consejos */
+/* Advices */
 .advice-item {
     display: flex;
     justify-content: space-between;
@@ -492,7 +492,6 @@ button:hover {
     font-family: Arial, sans-serif;
 }
 
-/* Estilos para los consejos vacíos */
 .tips ul li:first-child:only-child {
     text-align: center;
     color: #666;
@@ -500,7 +499,7 @@ button:hover {
     padding: 20px 0;
 }
 
-/* Estilos para el formulario de compra */
+/* Purchase Form */
 .purchase-form .form-buttons {
     display: flex;
     gap: 10px;
@@ -519,13 +518,11 @@ button:hover {
     background-color: #5a6268;
 }
 
-/* Estilos para campos con error */
 .input-error {
     border-color: #dc3545 !important;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
 
-/* Mejorar el select de tipo de tarjeta */
 .purchase-form select.text-input {
     background-color: white;
     cursor: pointer;
