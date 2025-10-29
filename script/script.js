@@ -452,10 +452,6 @@ function showAdviceDetails(adviceId) {
     
     // Validación del formulario de compra
     if ($(".purchase-form").length > 0) {
-        // Corregir el select de tipo de tarjeta (añadir opción vacía)
-        if ($('#card-type option[value=""]').length === 0) {
-            $('#card-type').prepend('<option value="" selected disabled>Seleccione tipo de tarjeta</option>');
-        }
 
         // Validar formulario de compra
         $(".purchase-form form").submit(function(event) {
@@ -476,7 +472,7 @@ function showAdviceDetails(adviceId) {
             // Validar Nombre completo (mínimo 3 caracteres)
             if (fullname.length < 3) {
                 isValid = false;
-                errorMessage += "• El nombre completo debe tener al menos 3 caracteres.\n";
+                errorMessage += "- El nombre completo debe tener al menos 3 caracteres.\n";
             }
 
             // Validar Email (formato válido)
@@ -537,13 +533,6 @@ function showAdviceDetails(adviceId) {
             } else {
                 alert("Error en el formulario:\n" + errorMessage);
             }
-        });
-
-        // Botón borrar que también resetee el select
-        $(".purchase-form form button[type='reset']").click(function() {
-            setTimeout(function() {
-                $('#card-type').prepend('<option value="" selected disabled>Seleccione tipo de tarjeta</option>');
-            }, 10);
         });
 
         // Validación en tiempo real para el número de tarjeta (formato visual)
