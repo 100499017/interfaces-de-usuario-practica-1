@@ -1,6 +1,162 @@
 $(document).ready(function() {
 
-    // Control de acceso para loggedin.html
+// Consejos de usuarios
+function initializeAdviceSystem() {
+    // Cargar y mostrar consejos al iniciar
+    displayLatestAdvices();
+    
+    // Configurar el formulario de consejos
+    $(".tip-form").submit(function(event) {
+        event.preventDefault();
+        
+        const title = $(this).find('input[type="text"]').val().trim();
+        const description = $(this).find('textarea').val().trim();
+        
+        // Validar longitud
+        if (title.length < 15) {
+            alert("El título debe tener al menos 15 caracteres.");
+            return;
+        }
+        
+        if (description.length < 30) {
+            alert("La descripción debe tener al menos 30 caracteres.");
+            return;
+        }
+        
+        // Añadir consejo
+        addAdvice(title, description);
+        
+        // Limpiar formulario
+        $(this).find('input[type="text"]').val('');
+        $(this).find('textarea').val('');
+        
+    });
+}
+
+// Función para añadir un nuevo consejo
+function addAdvice(title, description) {
+    let adviceList = JSON.parse(localStorage.getItem("adviceList")) || [];
+    
+    // Crear nuevo consejo
+    const newAdvice = {
+        id: Date.now(), // ID único basado en timestamp
+        title: title,
+        description: description,
+        date: new Date().toLocaleDateString('es-ES'),
+        author: sessionStorage.getItem("loggedInUser") || "Anónimo"
+    };
+    
+    // Añadir al principio de la lista
+    adviceList.unshift(newAdvice);
+    
+    // Mantener solo los últimos 50 consejos para no sobrecargar localStorage
+    if (adviceList.length > 50) {
+        adviceList = adviceList.slice(0, 50);
+    }
+    
+    // Guardar en localStorage
+    localStorage.setItem("adviceList", JSON.stringify(adviceList));
+    
+    // Actualizar la visualización
+    displayLatestAdvices();
+}
+
+// Función para mostrar los 3 últimos consejos
+function displayLatestAdvices() {
+    const adviceList = JSON.parse(localStorage.getItem("adviceList")) || [];
+    const latestAdvices = adviceList.slice(0, 3); // Solo los 3 más recientes
+    
+    const adviceContainer = $(".tips ul");
+    
+    if (latestAdvices.length === 0) {
+        adviceContainer.html('<li>No hay consejos todavía. ¡Sé el primero en compartir!</li>');
+        return;
+    }
+    
+    let adviceHTML = '';
+    latestAdvices.forEach(advice => {
+        adviceHTML += `
+            <li class="advice-item">
+                <a href="#" class="advice-link" data-advice-id="${advice.id}">
+                    ${advice.title}
+                </a>
+                <span class="advice-date">${advice.date}</span>
+            </li>
+        `;
+    });
+    
+    adviceContainer.html(adviceHTML);
+    
+    // Configurar clic en los consejos (para mostrar detalles)
+    $(".advice-link").click(function(event) {
+        event.preventDefault();
+        const adviceId = $(this).data('advice-id');
+        showAdviceDetails(adviceId);
+    });
+}
+
+// Función para mostrar detalles completos de un consejo
+function showAdviceDetails(adviceId) {
+    const adviceList = JSON.parse(localStorage.getItem("adviceList")) || [];
+    const advice = adviceList.find(a => a.id == adviceId);
+    
+    if (advice) {
+        // Crear ventana modal con los detalles
+        const modalHTML = `
+            <div class="advice-modal" style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            ">
+                <div style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 10px;
+                    max-width: 500px;
+                    width: 90%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                ">
+                    <h3>${advice.title}</h3>
+                    <p style="margin: 15px 0; line-height: 1.5;">${advice.description}</p>
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 20px;
+                        font-size: 0.9em;
+                        color: #666;
+                    ">
+                        <span>Publicado: ${advice.date}</span>
+                        <span>Por: ${advice.author}</span>
+                    </div>
+                    <button onclick="$(this).closest('.advice-modal').remove()" 
+                            style="
+                                margin-top: 20px;
+                                padding: 8px 16px;
+                                background: var(--primary-color);
+                                color: white;
+                                border: none;
+                                border-radius: 5px;
+                                cursor: pointer;
+                            ">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        $('body').append(modalHTML);
+    }
+}
+
+    // Control de acceso para loggedin
     if (window.location.pathname.includes("loggedin.html")) {
         const loggedInUser = sessionStorage.getItem("loggedInUser");
         
@@ -10,6 +166,8 @@ $(document).ready(function() {
             return;
         }
         
+        // Mostrar datos del usuario
+        const userData = JSON.parse(localStorage.getItem(loggedInUser));
         if (userData) {
             $(".user-info h3").text(`${userData.name} ${userData.surname}`);
             
@@ -17,6 +175,9 @@ $(document).ready(function() {
                 $(".user-info .profile-pic").attr("src", userData.profilePic).show();
             }
         }
+
+        // Sistema de consejos
+        initializeAdviceSystem();
 
         // Cerrar sesión
         $(".user-info .btn").click(function(event) {
@@ -27,28 +188,6 @@ $(document).ready(function() {
                 window.location.href = "index.html";
             }
         });
-    }
-
-        // Control de acceso y mostrar datos de usuario (loggedin.html)
-    function checkAuthentication() {
-        const loggedInUser = sessionStorage.getItem("loggedInUser");
-    
-        if (!loggedInUser) {
-            alert("Debe iniciar sesión para acceder a esta página.");
-            window.location.href = "index.html";
-            return null;
-        }
-    
-        const userData = JSON.parse(localStorage.getItem(loggedInUser));
-        if (!userData) {
-            // Usuario no encontrado en localStorage
-            sessionStorage.removeItem("loggedInUser");
-            alert("Error en los datos de usuario. Por favor, inicie sesión nuevamente.");
-            window.location.href = "index.html";
-            return null;
-        }
-    
-        return userData;
     }
 
     // Carrusel de imágenes
