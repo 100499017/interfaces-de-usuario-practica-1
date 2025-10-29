@@ -500,19 +500,46 @@ button:hover {
     padding: 20px 0;
 }
 
-/* Responsive para consejos */
-@media (max-width: 768px) {
-    .advice-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-    
-    .advice-date {
-        margin-left: 0;
-        align-self: flex-end;
-    }
+/* Estilos para el formulario de compra */
+.purchase-form .form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
 }
+
+.purchase-form .form-buttons .btn {
+    flex: 1;
+}
+
+.purchase-form .form-buttons .btn[type="reset"] {
+    background-color: #6c757d;
+}
+
+.purchase-form .form-buttons .btn[type="reset"]:hover {
+    background-color: #5a6268;
+}
+
+/* Estilos para campos con error */
+.input-error {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* Mejorar el select de tipo de tarjeta */
+.purchase-form select.text-input {
+    background-color: white;
+    cursor: pointer;
+}
+
+.purchase-form select.text-input:invalid {
+    color: #6c757d;
+}
+
+.purchase-form select.text-input option {
+    color: #333;
+}
+
+
 /* Responsive Design */
 
 @media (max-width: 768px) {
@@ -581,5 +608,19 @@ button:hover {
 
     .form-row {
         flex-direction: column;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .advice-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .advice-date {
+        margin-left: 0;
+        align-self: flex-end;
     }
 }

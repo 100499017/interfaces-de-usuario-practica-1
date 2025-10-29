@@ -410,21 +410,153 @@ function showAdviceDetails(adviceId) {
     // Estado inicial del botón
     validateForm();
 
-    // Página de compra
+    // Página de compra 
     if ($(".purchase-main-container").length > 0) {
         const selectedPackId = sessionStorage.getItem("selectedPackId");
+        console.log("Selected Pack ID:", selectedPackId); // Para debug
 
-        if (selectedPackId.length) {
+        if (selectedPackId && selectedPackId.length > 0) {
             // Busca el pack usando el ID
             const packData = travelPacks.find(pack => pack.id === selectedPackId);
-            console.log(packData.id);
+            console.log("Pack encontrado:", packData); // Para debug
 
-            // Actualiza el contenido de la página
-            $("#purchase-pack-image").attr("src", packData.image).attr("alt", packData.alt);
-            $("#purchase-pack-title").text(packData.title);
-            $("#purchase-pack-short-description").text(packData.description)
-            $("#purchase-pack-description").text(packData.purchaseDescription);
-            $("#purchase-pack-price").text(packData.price);
+            if (packData) {
+                // Actualiza el contenido de la página
+                $("#purchase-pack-image").attr("src", packData.image).attr("alt", packData.alt);
+                $("#purchase-pack-title").text(packData.title);
+                $("#purchase-pack-short-description").text(packData.description);
+                
+                // Corregir la descripción completa - reemplazar el texto, no el HTML completo
+                $("#purchase-pack-description p").text(packData.purchaseDescription);
+                $("#purchase-pack-price").text(packData.price);
+            } else {
+                console.error("Pack no encontrado para ID:", selectedPackId);
+                // Mostrar pack por defecto si no se encuentra
+                showDefaultPack();
+            }
+        } else {
+            console.log("No hay pack seleccionado, mostrando pack por defecto");
+            showDefaultPack();
         }
-    };
+
+        function showDefaultPack() {
+            // Mostrar el primer pack como predeterminado
+            const defaultPack = travelPacks[0];
+            $("#purchase-pack-image").attr("src", defaultPack.image).attr("alt", defaultPack.alt);
+            $("#purchase-pack-title").text(defaultPack.title);
+            $("#purchase-pack-short-description").text(defaultPack.description);
+            $("#purchase-pack-description p").text(defaultPack.purchaseDescription);
+            $("#purchase-pack-price").text(defaultPack.price);
+        }
+    }
+    
+    // Validación del formulario de compra
+    if ($(".purchase-form").length > 0) {
+        // Corregir el select de tipo de tarjeta (añadir opción vacía)
+        if ($('#card-type option[value=""]').length === 0) {
+            $('#card-type').prepend('<option value="" selected disabled>Seleccione tipo de tarjeta</option>');
+        }
+
+        // Validar formulario de compra
+        $(".purchase-form form").submit(function(event) {
+            event.preventDefault();
+            
+            let isValid = true;
+            let errorMessage = "";
+
+            // Obtener valores
+            const fullname = $("input[name='fullname']").val().trim();
+            const email = $("input[name='email']").val().trim();
+            const cardType = $("#card-type").val();
+            const cardNumber = $("input[name='card-number']").val().trim().replace(/\s/g, '');
+            const cardholderName = $("input[name='cardholder-name']").val().trim();
+            const expiryDate = $("input[name='expiry-date']").val();
+            const cvv = $("input[name='cvv']").val().trim();
+
+            // Validar Nombre completo (mínimo 3 caracteres)
+            if (fullname.length < 3) {
+                isValid = false;
+                errorMessage += "• El nombre completo debe tener al menos 3 caracteres.\n";
+            }
+
+            // Validar Email (formato válido)
+            const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!emailRegex.test(email)) {
+                isValid = false;
+                errorMessage += "- El formato del email no es válido.\n";
+            }
+
+            // Validar Tipo de tarjeta (debe estar seleccionado)
+            if (!cardType) {
+                isValid = false;
+                errorMessage += "- Debe seleccionar un tipo de tarjeta.\n";
+            }
+
+            // Validar Número de tarjeta (13, 15, 16 o 19 dígitos)
+            const cardNumberRegex = /^\d{13}$|^\d{15}$|^\d{16}$|^\d{19}$/;
+            if (!cardNumberRegex.test(cardNumber)) {
+                isValid = false;
+                errorMessage += "- El número de tarjeta debe tener 13, 15, 16 o 19 dígitos.\n";
+            }
+
+            // Validar Nombre del titular (mínimo 3 caracteres)
+            if (cardholderName.length < 3) {
+                isValid = false;
+                errorMessage += "- El nombre del titular debe tener al menos 3 caracteres.\n";
+            }
+
+            // Validar Fecha de caducidad (no expirada)
+            if (expiryDate) {
+                const expiry = new Date(expiryDate + "-01"); // Añadir día para crear fecha completa
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                if (expiry < today) {
+                    isValid = false;
+                    errorMessage += "- La tarjeta está caducada.\n";
+                }
+            } else {
+                isValid = false;
+                errorMessage += "- La fecha de caducidad es obligatoria.\n";
+            }
+
+            // Validar CVV (3 dígitos)
+            const cvvRegex = /^\d{3}$/;
+            if (!cvvRegex.test(cvv)) {
+                isValid = false;
+                errorMessage += "- El CVV debe tener exactamente 3 dígitos.\n";
+            }
+
+            // Mostrar resultado
+            if (isValid) {
+                alert("¡Compra realizada con éxito!\nGracias por su compra.");
+                // Aquí podrías redirigir a otra página o limpiar el formulario
+                this.reset();
+                // Corregir nuevamente el select después del reset
+                $('#card-type').prepend('<option value="" selected disabled>Seleccione tipo de tarjeta</option>');
+            } else {
+                alert("Error en el formulario:\n" + errorMessage);
+            }
+        });
+
+        // Botón borrar que también resetee el select
+        $(".purchase-form form button[type='reset']").click(function() {
+            setTimeout(function() {
+                $('#card-type').prepend('<option value="" selected disabled>Seleccione tipo de tarjeta</option>');
+            }, 10);
+        });
+
+        // Validación en tiempo real para el número de tarjeta (formato visual)
+        $("input[name='card-number']").on('input', function() {
+            let value = $(this).val().replace(/\s/g, '').replace(/\D/g, '');
+            // Formatear con espacios cada 4 dígitos
+            value = value.replace(/(\d{4})/g, '$1 ').trim();
+            $(this).val(value);
+        });
+
+        // Validación en tiempo real para CVV (solo números)
+        $("input[name='cvv']").on('input', function() {
+            $(this).val($(this).val().replace(/\D/g, '').substring(0, 3));
+        });
+    }
 })
