@@ -252,6 +252,8 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    text-align: center;
+    padding: 20px;
 }
 
 .user-info .name-and-image {
@@ -259,11 +261,37 @@ main {
     align-items: center;
     gap: 20px;
     justify-content: space-between;
+    margin-bottom: 15px;
 }
 
 .user-info .profile-pic {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+    margin: 10px auto;
+}
+
+.user-info h3 {
+    margin: 10px 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+#logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+}
+
+#logout-btn:hover {
+    background-color: #c82333;
 }
 
 .experience-filter {

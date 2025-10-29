@@ -1,5 +1,56 @@
 $(document).ready(function() {
 
+    // Control de acceso para loggedin.html
+    if (window.location.pathname.includes("loggedin.html")) {
+        const loggedInUser = sessionStorage.getItem("loggedInUser");
+        
+        if (!loggedInUser) {
+            alert("Debe iniciar sesión para acceder a esta página.");
+            window.location.href = "index.html";
+            return;
+        }
+        
+        if (userData) {
+            $(".user-info h3").text(`${userData.name} ${userData.surname}`);
+            
+            if (userData.profilePic) {
+                $(".user-info .profile-pic").attr("src", userData.profilePic).show();
+            }
+        }
+
+        // Cerrar sesión
+        $(".user-info .btn").click(function(event) {
+            event.preventDefault();
+            
+            if (confirm("¿Desea cerrar sesión?")) {
+                sessionStorage.removeItem("loggedInUser");
+                window.location.href = "index.html";
+            }
+        });
+    }
+
+        // Control de acceso y mostrar datos de usuario (loggedin.html)
+    function checkAuthentication() {
+        const loggedInUser = sessionStorage.getItem("loggedInUser");
+    
+        if (!loggedInUser) {
+            alert("Debe iniciar sesión para acceder a esta página.");
+            window.location.href = "index.html";
+            return null;
+        }
+    
+        const userData = JSON.parse(localStorage.getItem(loggedInUser));
+        if (!userData) {
+            // Usuario no encontrado en localStorage
+            sessionStorage.removeItem("loggedInUser");
+            alert("Error en los datos de usuario. Por favor, inicie sesión nuevamente.");
+            window.location.href = "index.html";
+            return null;
+        }
+    
+        return userData;
+    }
+
     // Carrusel de imágenes
     
     const travelPacks = [
@@ -78,7 +129,7 @@ $(document).ready(function() {
         window.location.href = $(this).attr("href"); // Navegamos hacia la página de compra
     });
 
-    // --- FUNCIONALIDAD DE LOGIN (Página Home - index.html) ---
+    // Funcionalidad de login (Página Home - index.html)
 
     $(".login-form").submit(function(event) {
         event.preventDefault(); // Evita que el formulario se envíe de la forma tradicional
